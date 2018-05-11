@@ -7,6 +7,7 @@ body{
 .heading-primary {
     color: $color-white;
     text-transform: uppercase;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     margin-bottom: 6rem;
 
@@ -39,12 +40,16 @@ body{
     font-size: 3.5rem;
     text-transform: uppercase;
     font-weight: 700;
-    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
     display: inline-block;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: $color-primary;
     letter-spacing: .2rem;
     transition: all .2s;
+    @supports (-webkit-background-clip: text) or (background-clip: text) {
+        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
 
     @include respond(tab-port) {
         font-size: 3rem;
